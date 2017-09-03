@@ -1,3 +1,4 @@
+import { AuthenthicationService } from './core/providers/authentication/authenthication.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Event, NavigationStart, NavigationEnd, NavigationError, Router, NavigationCancel } from '@angular/router';
 
@@ -10,16 +11,24 @@ import { Event, NavigationStart, NavigationEnd, NavigationError, Router, Navigat
 export class AppComponent implements OnInit, OnDestroy {
   protected loading = true;
   protected showMessages = false;
-  constructor(private router: Router) {
-    this.router.events.subscribe(event => {
-      this.checkRouterEvent(event);
-    });
+  private currentUserEmail;
+  constructor(private router: Router, private authService: AuthenthicationService) {
   }
 
 
   ngOnDestroy(): void {
   }
   ngOnInit(): void {
+    this.authService.currentUser.subscribe(x => {
+      if (!!x) {
+        this.currentUserEmail = x.email;
+      } else {
+        this.currentUserEmail = '';
+      }
+    });
+    this.router.events.subscribe(event => {
+      this.checkRouterEvent(event);
+    });
   }
 
 
@@ -37,5 +46,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
   togleMessages() {
     this.showMessages = !this.showMessages;
+    if (this.showMessages) {
+      console.log(this.currentUserEmail);
+      this.router.navigate([{ outlets: { messages: ['messages', this.currentUserEmail] } }]);
+    } else {
+      this.router.navigate([{ outlets: { messages: null } }]);
+    }
   }
 }

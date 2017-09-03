@@ -1,3 +1,4 @@
+import { MessagesComponent } from './messages/messages.component';
 import { PageNotFoundComponent } from './page-not-fount/page-not-fount.component';
 import { MenuModule } from './menu/menu.module';
 import { AuthModule } from './auth/auth.module';
@@ -12,7 +13,8 @@ import { MdProgressSpinnerModule, MdButtonModule } from '@angular/material';
 @NgModule({
   declarations: [
     AppComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    MessagesComponent
   ],
   imports: [
     MdProgressSpinnerModule,

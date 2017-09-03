@@ -7,7 +7,13 @@
         min-height: 600px;
     }
     
+    .medium-text {
+        font-size: 1.2em;
+    }
+    
     .message-content {
+        font-family: Roboto;
+        font-weight: 200;
         position: absolute;
         height: 500px;
         top: 0.5%;

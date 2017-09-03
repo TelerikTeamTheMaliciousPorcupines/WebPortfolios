@@ -6,10 +6,10 @@
             <div class="main-content">
                 <router-outlet></router-outlet>
             </div>
-            <button (click)="togleMessages()" class="show-messages-button" md-raised-button *ngIf="!showMessages" color="primary">Show Messages</button>
-            <div class="message-content" *ngIf="showMessages">
+            <button (click)="togleMessages()" class="show-messages-button" md-raised-button *ngIf="!showMessages && !!currentUserEmail" color="primary">Show Messages</button>
+            <div class="message-content" *ngIf="showMessages && !!currentUserEmail">
                 <div class="messages">
-                    <h3>Messages</h3>
+                    <p class="medium-text">Messages</p>
                     <router-outlet name="messages"></router-outlet>
                 </div>
                 <button (click)="togleMessages()" class="hide-messages-button" md-raised-button color="accent">Hide Messages</button>
