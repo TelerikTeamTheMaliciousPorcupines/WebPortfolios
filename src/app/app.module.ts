@@ -8,6 +8,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { MdProgressSpinnerModule, MdButtonModule } from '@angular/material';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { MdProgressSpinnerModule, MdButtonModule } from '@angular/material';
     CoreModule.forRoot(),
     MessagesModule,
     AppRoutingModule,
+    ToastModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -35,7 +35,7 @@ export class PortfolioService {
             .then(portfolios => {
                 const y = portfolios.find(x => x.email === email);
                 return y;
-            })
+            });
     }
 
     addPortfolio(portfolio: Portfolio) {
