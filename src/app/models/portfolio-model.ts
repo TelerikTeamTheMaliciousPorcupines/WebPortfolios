@@ -1,12 +1,13 @@
 export class Portfolio {
 
     constructor(portfolio: any) {
-        this.email = portfolio.email;
-        this.imgUrl = portfolio.imgUrl;
-        this.firstName = portfolio.firstName;
-        this.lastName = portfolio.lastName;
-        this.age = portfolio.age;
-        this.profession = portfolio.profession;
+        this.id = !!portfolio.id ? portfolio.id : null;
+        this.email = !!portfolio.email ? portfolio.email : '';
+        this.imgUrl = !!portfolio.imgUrl ? portfolio.imgUrl : '';
+        this.firstName = !!portfolio.firstName ? portfolio.firstName : '';
+        this.lastName = !!portfolio.lastName ? portfolio.lastName : '';
+        this.age = !!portfolio.age ? portfolio.age : null;
+        this.profession = !!portfolio.profession ? portfolio.profession : '';
         if (Array.isArray(portfolio.interests)) {
             this.interests = portfolio.interests;
         } else {
@@ -19,7 +20,7 @@ export class Portfolio {
             }
 
         }
-        this.workingExperience = portfolio.workingExperience;
+        this.workingExperience = !!portfolio.workingExperience ? portfolio.workingExperience : null;
         if (Array.isArray(portfolio.languages)) {
             this.languages = portfolio.languages;
         } else {
@@ -53,7 +54,7 @@ export class Portfolio {
                 }
             }
         }
-        this.additionalInfo = portfolio.additionalInfo;
+        this.additionalInfo = !!portfolio.additionalInfo ? portfolio.additionalInfo : '';
     }
     email: string;
     imgUrl: string;
@@ -68,4 +69,5 @@ export class Portfolio {
     hobbies: string[];
     additionalInfo: string;
     rating: number;
+    id: string;
 }

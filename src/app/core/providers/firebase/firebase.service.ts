@@ -5,7 +5,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
 @Injectable()
-export class FirebaseService  {
+export class FirebaseService {
 
     public user: any;
 
@@ -25,6 +25,7 @@ export class FirebaseService  {
                 const resultAsArray = [];
                 const keys = Object.keys(x);
                 for (const key of keys) {
+                    x[key].id = key;
                     resultAsArray.push(x[key]);
                 }
                 console.log(resultAsArray);
@@ -33,7 +34,13 @@ export class FirebaseService  {
     }
 
     public addItem(collectionName: string, item: any) {
+        delete item['id'];
         return this.afDataBase.database.ref(collectionName).push(item);
+    }
+    public updateItem(collectionName: string, item: any) {
+        const id = item.id;
+        delete item['id'];
+        return this.afDataBase.database.ref(collectionName + '/' + id).update(item);
     }
 
     public signIn(email: string, password: string) {
@@ -68,7 +75,7 @@ export class FirebaseService  {
                 } else {
                     alert(errorMessage);
                 }
-               return false;
+                return false;
             });
     }
     public logout() {

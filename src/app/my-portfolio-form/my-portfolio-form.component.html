@@ -1,74 +1,78 @@
-<form [formGroup]="rForm" (ngSubmit)="addPortfolio(rForm.value)" class="form">
-    <table class="full-width" cellspacing="0">
-        <tr>
-            <td>
-                <md-input-container class="full-width">
-                    <input mdInput placeholder="First name" formControlName="firstName">
-                </md-input-container>
-            </td>
-            <td>
-                <md-input-container class="full-width">
-                    <input mdInput placeholder="Last name" formControlName="lastName">
-                </md-input-container>
-            </td>
-        </tr>
-        <div class="alert" *ngIf="(!rForm.controls['firstName'].valid && rForm.controls['firstName'].touched) || (!rForm.controls['lastName'].valid && rForm.controls['lastName'].touched)">This field must have at least 3 characters</div>
-    </table>
+<div class="flex-container">
+    <img [src]="portfolio.imgUrl" *ngIf="!!portfolio.imgUrl" class="portrait-photo">
+    <img src="../../assets/images/small-no-img.jpg" *ngIf="!portfolio.imgUrl" class="portrait-photo">
+    <form [formGroup]="rForm" (ngSubmit)="addPortfolio(rForm.value)" class="form">
+        <table class="full-width" cellspacing="0">
+            <tr>
+                <td>
+                    <md-input-container class="full-width">
+                        <input mdInput placeholder="First name" formControlName="firstName">
+                    </md-input-container>
+                </td>
+                <td>
+                    <md-input-container class="full-width">
+                        <input mdInput placeholder="Last name" formControlName="lastName">
+                    </md-input-container>
+                </td>
+            </tr>
+            <div class="alert" *ngIf="(!rForm.controls['firstName'].valid && rForm.controls['firstName'].touched) || (!rForm.controls['lastName'].valid && rForm.controls['lastName'].touched)">This field must have at least 3 characters</div>
+        </table>
 
-    <p>
-        <md-input-container class="full-width">
-            <input mdInput placeholder="Portrait photo URL" formControlName="imgUrl">
-        </md-input-container>
-    </p>
-    <div class="alert" *ngIf="!rForm.controls['imgUrl'].valid && rForm.controls['imgUrl'].touched">You should enter valid URL</div>
+        <p>
+            <md-input-container class="full-width">
+                <input mdInput placeholder="Portrait photo URL" formControlName="imgUrl">
+            </md-input-container>
+        </p>
+        <div class="alert" *ngIf="!rForm.controls['imgUrl'].valid && rForm.controls['imgUrl'].touched">You should enter valid URL</div>
 
-    <table class="full-width" cellspacing="0">
-        <tr>
-            <td>
-                <md-input-container class="full-width">
-                    <input mdInput placeholder="Age" formControlName="age">
-                </md-input-container>
-            </td>
-            <td>
-                <md-input-container class="full-width">
-                    <input mdInput placeholder="Profession" formControlName="profession">
-                </md-input-container>
-            </td>
-            <td>
-                <md-input-container class="full-width">
-                    <input mdInput placeholder="Working experience" formControlName="workingExperience">
-                </md-input-container>
-            </td>
-        </tr>
-        <div class="alert" *ngIf="!rForm.controls['age'].valid && rForm.controls['age'].touched">Age must be a positive number</div>
-        <div class="alert" *ngIf="!rForm.controls['profession'].valid && rForm.controls['profession'].touched">Profession must have at least 3 characters</div>
-        <div class="alert" *ngIf="!rForm.controls['workingExperience'].valid && rForm.controls['workingExperience'].touched">Working experience must be a positive number</div>
+        <table class="full-width" cellspacing="0">
+            <tr>
+                <td>
+                    <md-input-container class="full-width">
+                        <input mdInput placeholder="Age" formControlName="age">
+                    </md-input-container>
+                </td>
+                <td>
+                    <md-input-container class="full-width">
+                        <input mdInput placeholder="Profession" formControlName="profession">
+                    </md-input-container>
+                </td>
+                <td>
+                    <md-input-container class="full-width">
+                        <input mdInput placeholder="Working experience" formControlName="workingExperience">
+                    </md-input-container>
+                </td>
+            </tr>
+            <div class="alert" *ngIf="!rForm.controls['age'].valid && rForm.controls['age'].touched">Age must be a positive number</div>
+            <div class="alert" *ngIf="!rForm.controls['profession'].valid && rForm.controls['profession'].touched">Profession must have at least 3 characters</div>
+            <div class="alert" *ngIf="!rForm.controls['workingExperience'].valid && rForm.controls['workingExperience'].touched">Working experience must be a positive number</div>
 
-    </table>
-    <p>
-        <md-input-container class="full-width">
-            <input mdInput placeholder="interests, sperated by comma" formControlName="interests">
-        </md-input-container>
-    </p>
-    <p>
-        <md-input-container class="full-width">
-            <input mdInput placeholder="projects, sperated by comma" formControlName="projects">
-        </md-input-container>
-    </p>
-    <p>
-        <md-input-container class="full-width">
-            <input mdInput placeholder="languages, sperated by comma" formControlName="languages">
-        </md-input-container>
-    </p>
-    <p>
-        <md-input-container class="full-width">
-            <input mdInput placeholder="hobbies, sperated by comma" formControlName="hobbies">
-        </md-input-container>
-    </p>
-    <p>
-        <md-input-container class="full-width">
-            <textarea mdInput placeholder="Additional information you want to include" formControlName="additionalInfo" rows="3"></textarea>
-        </md-input-container>
-    </p>
-    <button md-raised-button class="right" type="submit" color="primary" [disabled]="!rForm.valid">Submit form</button>
-</form>
+        </table>
+        <p>
+            <md-input-container class="full-width">
+                <input mdInput placeholder="interests, sperated by comma" formControlName="interests">
+            </md-input-container>
+        </p>
+        <p>
+            <md-input-container class="full-width">
+                <input mdInput placeholder="projects, sperated by comma" formControlName="projects">
+            </md-input-container>
+        </p>
+        <p>
+            <md-input-container class="full-width">
+                <input mdInput placeholder="languages, sperated by comma" formControlName="languages">
+            </md-input-container>
+        </p>
+        <p>
+            <md-input-container class="full-width">
+                <input mdInput placeholder="hobbies, sperated by comma" formControlName="hobbies">
+            </md-input-container>
+        </p>
+        <p>
+            <md-input-container class="full-width">
+                <textarea mdInput placeholder="Additional information you want to include" formControlName="additionalInfo" rows="3"></textarea>
+            </md-input-container>
+        </p>
+        <button md-raised-button class="right align-bottom" type="submit" color="primary" [disabled]="!rForm.valid">Edit info</button>
+    </form>
+</div>

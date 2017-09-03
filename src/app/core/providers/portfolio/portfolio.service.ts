@@ -32,10 +32,16 @@ export class PortfolioService {
 
     getPortfolio(email: string) {
         return this.getAll()
-            .then(portfolios => portfolios.find(x => x.email === email));
+            .then(portfolios => {
+                const y = portfolios.find(x => x.email === email);
+                return y;
+            })
     }
 
-    addPortfolio(portfolio) {
-       this.database.addItem('portfolios', portfolio);
+    addPortfolio(portfolio: Portfolio) {
+        this.database.addItem('portfolios', portfolio);
+    }
+    updatePortfolio(portfolio: Portfolio) {
+        this.database.updateItem('portfolios', portfolio);
     }
 }

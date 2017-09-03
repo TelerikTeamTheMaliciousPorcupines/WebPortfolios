@@ -1,10 +1,31 @@
 .form {
     width: 500px;
     padding: 50px 0;
+    margin-left: 1%;
+    margin-top: 1%;
+    padding: 3em 2em 2em 2em;
+    background: #fafafa;
+    border: 1px solid #ebebeb;
+    box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px, rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px;
 }
 
 .full-width {
     width: 100%;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.portrait-photo {
+    border: 1px solid #ebebeb;
+    padding: 5px;
+    margin-top: 1%;
+    width: 220px;
+    height: 270px;
 }
 
 .alert {
@@ -21,6 +42,11 @@
     float: right;
 }
 
+.align-bottom {
+    display: block;
+    bottom: 20px;
+}
+
 @keyframes alertAnim {
     from {
         opacity: 0;
@@ -29,5 +55,20 @@
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .portrait-photo {
+        display: none;
+    }
+    .form {
+        width: 400px;
+    }
+}
+
+@media only screen and (max-width: 750px) {
+    .form {
+        width: 300px;
     }
 }

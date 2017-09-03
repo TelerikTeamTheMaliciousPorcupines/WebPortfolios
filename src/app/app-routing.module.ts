@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/portfolios/all', pathMatch: 'full' },
   { path: 'portfolios', loadChildren: './portfolios/portfolios.module#PortfoliosModule' },
   { path: 'contact', component: ContactComponent },
-  { path: 'my-portfolio-form', loadChildren: './my-portfolio-form/my-portfolio-form.module#MyPortfolioFormModule'},
+  { path: 'my-portfolio-form', loadChildren: './my-portfolio-form/my-portfolio-form.module#MyPortfolioFormModule' },
   { path: '**', component: PageNotFoundComponent }
 ];
 
