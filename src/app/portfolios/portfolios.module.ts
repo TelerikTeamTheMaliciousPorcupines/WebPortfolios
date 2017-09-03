@@ -10,10 +10,11 @@ import {
 import { PortfoliosRoutesModule } from './portfolios-routing.module';
 import { PortfolioListComponent } from './portfolio-list/portfolio-list.component';
 import { PortfolioDetailComponent } from './portfolio-detail/portfolio-detail.component';
-
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   imports: [
+    RouterModule,
     SharedModule,
     CommonModule,
     PortfoliosRoutesModule,

@@ -8,8 +8,17 @@ export class AuthenthicationService {
 
     public currentUser;
     public redirectUrl: string;
+
+    public currentUserEmail: string;
     constructor(private userService: FirebaseService) {
         this.currentUser = this.userService.user;
+        this.userService.user.subscribe(x => {
+            if (!!x) {
+                this.currentUserEmail = x.email;
+            } else {
+                this.currentUserEmail = '';
+            }
+        });
     }
     login(inputUser: UserLoginDetailsModel) {
         return this.userService.login(inputUser.email, inputUser.password, inputUser.shouldRemember);

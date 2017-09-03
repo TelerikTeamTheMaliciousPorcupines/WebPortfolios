@@ -5,6 +5,7 @@ export class Message {
         this.from = !!message.from ? message.from : '';
         this.text = !!message.text ? message.text : '';
         this.isNew = true;
+        this.timeStamp = Date.now();
     }
     public to: string;
     public from: string;
@@ -12,4 +13,6 @@ export class Message {
     public text: string;
 
     public isNew: boolean;
+
+    public timeStamp: number;
 }

@@ -1,4 +1,4 @@
-import { MessagesComponent } from './messages/messages.component';
+
 import { AuthGuard } from './core/providers/guards/auth-guard.service';
 import { PageNotFoundComponent } from './page-not-fount/page-not-fount.component';
 import { ContactComponent } from './menu/contact/contact.component';
@@ -11,7 +11,6 @@ const routes: Routes = [
   { path: 'portfolios', loadChildren: './portfolios/portfolios.module#PortfoliosModule' },
   { path: 'contact', component: ContactComponent },
   { path: 'my-portfolio-form', loadChildren: './my-portfolio-form/my-portfolio-form.module#MyPortfolioFormModule' },
-  { path: 'messages/:email', component: MessagesComponent, outlet: 'messages', canActivate: [AuthGuard] },
   { path: '**', component: PageNotFoundComponent }
 ];
 

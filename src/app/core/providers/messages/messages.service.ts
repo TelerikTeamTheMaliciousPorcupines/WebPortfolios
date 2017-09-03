@@ -1,4 +1,4 @@
-import { ActivatedRouteSnapshot } from '@angular/router';
+import { element } from 'protractor';
 import { Portfolio } from './../../../models/portfolio-model';
 import { Observable } from 'rxjs/Observable';
 import { FirebaseService } from './../firebase/firebase.service';
@@ -8,11 +8,12 @@ import { Message } from '../../../models/message-model';
 @Injectable()
 export class MessagesService {
 
-    private email;
-    public collectionChange: Observable<any>;
-    constructor(private database: FirebaseService, private route: ActivatedRouteSnapshot) {
-        this.email = this.route.data['email'];
-        this.collectionChange = new Observable<any>(observer => {
+    public collectionChange: Observable<Message[]>;
+    constructor(private database: FirebaseService) {
+    }
+
+    initChangeListen(email: string) {
+        this.collectionChange = new Observable<Message[]>(observer => {
             const onChange = function (databaseSnapshot) {
                 const resAsObject = databaseSnapshot.exportVal();
                 const resultAsArray = [];
@@ -24,18 +25,16 @@ export class MessagesService {
                 observer.next(resultAsArray);
             };
 
-            database.subscribeToCollectionChange(this.createMessagePath(this.email), onChange);
+            this.database.subscribeToCollectionChange(this.createMessagePath(email), onChange);
 
         });
     }
-
-
-    getAllMessages() {
-        return this.database.getCollection(this.createMessagePath(this.email)).then(x => x.map(y => new Message(y)));
+    getAllMessages(email: string) {
+        return this.database.getCollection(this.createMessagePath(email)).then(x => x.map(y => new Message(y)));
     }
 
-    getAllMessageFromUser(userEmail) {
-        return this.database.getCollection(this.createMessagePath(this.email))
+    getAllMessageFromUser(userEmail, ownerEmail) {
+        return this.database.getCollection(this.createMessagePath(ownerEmail))
             .then(allMessages => {
                 return allMessages.map(y => new Message(y));
             })
@@ -46,6 +45,8 @@ export class MessagesService {
     }
 
     private createMessagePath(additionalPath): string {
+        additionalPath = btoa(additionalPath);
+        console.log( 'messages/' + additionalPath);
         return 'messages/' + additionalPath;
     }
 }

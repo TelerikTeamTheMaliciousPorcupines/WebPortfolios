@@ -32,10 +32,10 @@ export class MyPortfolioFormComponent implements OnInit {
       'profession': [this.portfolio.profession, Validators.compose([Validators.required, Validators.minLength(3)])],
       'workingExperience': [this.portfolio.workingExperience,
       Validators.compose([Validators.required, Validators.pattern('^([1-9]|[0-6][0-9])$')])],
-      'interests': this.portfolio.interests,
-      'projects': this.portfolio.projects,
-      'languages': this.portfolio.languages,
-      'hobbies': this.portfolio.hobbies,
+      'interests': this.portfolio.interests.join(','),
+      'projects': this.portfolio.projects.join(','),
+      'languages': this.portfolio.languages.join(','),
+      'hobbies': this.portfolio.hobbies.join(','),
       'additionalInfo': this.portfolio.additionalInfo,
     });
   }

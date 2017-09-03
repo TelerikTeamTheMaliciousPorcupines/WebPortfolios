@@ -14,7 +14,16 @@ export class FirebaseService {
         this.user = this.afAuth.authState;
     }
     public subscribeToCollectionChange(collectionName, callbackMethod) {
-        this.afDataBase.database.ref(collectionName).on('value', callbackMethod);
+        this.afDataBase.database.ref(collectionName).once('value')
+            .then(x => {
+                if (x.exists()) {
+                    this.afDataBase.database.ref(collectionName).on('value', callbackMethod);
+                } else {
+                    callbackMethod({
+                        exportVal: function () { return {}; },
+                    });
+                }
+            });
     }
     public getCollection(collectionName: string) {
         return this.afDataBase.database.ref(collectionName).once('value')
