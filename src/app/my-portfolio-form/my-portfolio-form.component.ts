@@ -2,8 +2,9 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthenthicationService } from './../core/providers/authentication/authenthication.service';
 import { PortfolioService } from './../core/providers/portfolio/portfolio.service';
 import { Portfolio } from './../models/portfolio-model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
   templateUrl: './my-portfolio-form.component.html',
@@ -17,9 +18,9 @@ export class MyPortfolioFormComponent implements OnInit {
   rForm: FormGroup;
 
   constructor(private fb: FormBuilder, private portfolioService: PortfolioService,
-    private authService: AuthenthicationService, private route: ActivatedRoute) {
-
-
+    private authService: AuthenthicationService, private route: ActivatedRoute, public toastr: ToastsManager,
+    private vRef: ViewContainerRef) {
+    this.toastr.setRootViewContainerRef(vRef);
   }
 
   createForm() {
@@ -41,7 +42,8 @@ export class MyPortfolioFormComponent implements OnInit {
 
   addPortfolio(rForm) {
     if (this.isFormSame(rForm)) {
-      window.alert("same form");
+      window.scrollTo(0, 0);
+      this.toastr.warning('You do not commit any changes!');
       return false;
     }
     this.portfolio.firstName = rForm.firstName;
@@ -57,10 +59,14 @@ export class MyPortfolioFormComponent implements OnInit {
     this.portfolio.additionalInfo = rForm.additionalInfo;
     if (this.isEdit) {
       this.portfolioService.updatePortfolio(this.portfolio);
+      window.scrollTo(0, 0);
+      this.toastr.success('Sucessfully modified portfolio');
     } else {
       this.portfolioService.addPortfolio(this.portfolio);
+      window.scrollTo(0, 0);
+      this.toastr.success('Sucessfully added your first portfolio!');
     }
-    window.alert("Sucessfully modified form");
+
   }
 
   ngOnInit() {
