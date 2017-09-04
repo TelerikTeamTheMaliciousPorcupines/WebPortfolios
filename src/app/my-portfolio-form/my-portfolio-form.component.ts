@@ -7,7 +7,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
-  selector: 'app-my-portfolio-form',
   templateUrl: './my-portfolio-form.component.html',
   styleUrls: ['./my-portfolio-form.component.css']
 })
