@@ -1,0 +1,64 @@
+.full-width {
+    width: 100%;
+}
+
+h1 {
+    font-family: Roboto;
+}
+
+.border-down {
+    border-bottom: 1px solid black;
+}
+
+.same-row {
+    display: inline-block;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.flex-container {
+    width: 500px;
+    height: 300px;
+    padding: 20px;
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    border: 1px solid black;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.alert {
+    background: #f2edda;
+    padding: 7px;
+    font-size: .9em;
+    color: red;
+    margin-bottom: 20px;
+    display: inline-block;
+    animation: 2s alertAnim forwards;
+}
+
+
+.right {
+    float: right;
+}
+
+.align-bottom {
+    display: block;
+    bottom: 5px;
+}
+
+
+@keyframes alertAnim {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

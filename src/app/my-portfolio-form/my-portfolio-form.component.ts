@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-my-portfolio-form',
   templateUrl: './my-portfolio-form.component.html',
   styleUrls: ['./my-portfolio-form.component.css']
 })

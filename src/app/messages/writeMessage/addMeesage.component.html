@@ -1,3 +1,18 @@
-<p>
-  AddMeesage works!
-</p>
+<div class="flex-container">
+    <div class="full-width border-down">
+        <h1 class="same-row">Send message</h1>
+        <md-input-container class="same-row">
+            <input mdInput value="{{receiverEmail}}" type="text" disabled>
+        </md-input-container>
+    </div>
+    <br>
+    <br>
+    <br>
+    <form [formGroup]="messageForm" class="form full-width" (ngSubmit)="sendMessage(messageForm.value)" novalidate>
+        <md-input-container class="full-width ">
+            <input mdInput class="full-width " placeholder="text.. " formControlName="text" type="text">
+        </md-input-container>
+        <div class="alert" *ngIf="!messageForm.controls['text'].valid && messageForm.controls['text'].touched ">Message should contain at least 15 characters</div>
+        <button md-raised-button class="right align-bottom " type="submit " color="primary" [disabled]="!messageForm.valid">Send</button>
+    </form>
+</div>
