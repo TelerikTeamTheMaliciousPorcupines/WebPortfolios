@@ -20,13 +20,20 @@
         <md-option value="workingExperience">Working exp</md-option>
     </md-select>
 </div>
+<div class="radio-button">
+    <md-radio-group [(ngModel)]="fontSize">
+        <md-radio-button value="16px">normal font size</md-radio-button>
+        <md-radio-button value="22px">large font size</md-radio-button>
+    </md-radio-group>
+</div>
+
 <div class="main-content">
     <ul class="flex-container">
         <li class="flex-item" *ngFor="let portfolio of (filteredPortfolios | sort: [sort, order])">
             <img class="portrait-photo" [src]="portfolio.imgUrl" alt="">
-            <div class="name"><strong>{{portfolio.firstName}} {{portfolio.lastName}}</strong></div>
-            <div class="age">{{portfolio.age}} years old</div>
-            <div>{{portfolio.profession}}</div>
+            <div myLargeFont [inputFontSize]="fontSize" class="name"><strong>{{portfolio.firstName}} {{portfolio.lastName}}</strong></div>
+            <div myLargeFont [inputFontSize]="fontSize" class="age">{{portfolio.age}} years old</div>
+            <div myLargeFont [inputFontSize]="fontSize">{{portfolio.profession}}</div>
             <a md-raised-button [routerLink]="['/portfolios/portfolio-detail', portfolio.email]" color="accent" class="view-details">View details</a>
         </li>
     </ul>

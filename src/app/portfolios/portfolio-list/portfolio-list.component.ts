@@ -14,6 +14,7 @@ export class PortfolioListComponent implements OnInit {
   filteredPortfolios: Portfolio[];
   sort = '';
   order = '';
+  fontSize: '10px';
 
   constructor(private portfolioService: PortfolioService) {
   }
@@ -28,6 +29,7 @@ export class PortfolioListComponent implements OnInit {
 
   searchPortfolio(query: string) {
     this.filteredPortfolios = [];
+    console.log(this.fontSize);
     this.filteredPortfolios = this.portfolios.filter((portfolio) => {
       return portfolio.profession.toLowerCase().indexOf(query.toLowerCase()) > -1;
     });
