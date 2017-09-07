@@ -14,7 +14,7 @@ export class PortfolioListComponent implements OnInit {
   filteredPortfolios: Portfolio[];
   sort = '';
   order = '';
-  fontSize: '10px';
+  fontSize: string;
 
   constructor(private portfolioService: PortfolioService) {
   }

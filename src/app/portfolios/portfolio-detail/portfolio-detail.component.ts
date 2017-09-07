@@ -23,7 +23,7 @@ export class PortfolioDetailComponent implements OnInit, OnDestroy {
   }
   ngOnInit(): void {
     this.routerSubscription = this.route.data.subscribe(data => {
-      this.portfolio = data['portfolio'];
+      this.portfolio = data.portfolio;
     });
   }
 
