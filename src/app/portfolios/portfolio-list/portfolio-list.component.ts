@@ -14,7 +14,7 @@ export class PortfolioListComponent implements OnInit, OnDestroy {
   filteredPortfolios: Portfolio[];
   sort = '';
   order = '';
-  fontSize: '10px';
+  fontSize: string;
 
   subscription: ISubscription;
 

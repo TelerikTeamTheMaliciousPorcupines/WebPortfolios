@@ -21,7 +21,7 @@ export class PortfolioDetailComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.receiverEmail = this.route.snapshot.params['email'];
     this.routerSubscription = this.route.data.subscribe(data => {
-      this.portfolio = data['portfolio'];
+      this.portfolio = data.portfolio;
     });
   }
 
