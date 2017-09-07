@@ -45,7 +45,7 @@ describe('PortfolioListComponent', () => {
         expect(JSON.stringify(component.portfolios[0])).toEqual(JSON.stringify(portfolio));
 
     });
-    it('should call searchPortfolio exaclty once', () => {
+    it('ngOnInit should call searchPortfolio exaclty once', () => {
 
         spyOn(component, 'searchPortfolio');
 
@@ -53,13 +53,13 @@ describe('PortfolioListComponent', () => {
         expect(component.searchPortfolio).toHaveBeenCalledTimes(1);
     });
 
-    it('return all portfolios if no filter is applied', () => {
-
-        component.ngOnInit();
+    it('searchPortfolio should return all portfolios if no filter is applied', () => {
+        component.portfolios = collection;
+        component.searchPortfolio('');
         expect(JSON.stringify(component.filteredPortfolios[0])).toEqual(JSON.stringify(portfolio));
     });
 
-    it('return only portfolios that have manager profesion', () => {
+    it('searchPortfolio should return only portfolios that have manager profesion', () => {
 
         const portfolio2 = {
             email: 'TestMail',
@@ -78,9 +78,9 @@ describe('PortfolioListComponent', () => {
             id: '12',
         };
         collection.push(portfolio2);
-        component.message = { 'nativeElement': { 'value': 'manager' } };
 
-        component.ngOnInit();
+        component.portfolios = collection;
+        component.searchPortfolio('manager');
         expect(JSON.stringify(component.filteredPortfolios[0])).toEqual(JSON.stringify(portfolio2));
     });
 });
