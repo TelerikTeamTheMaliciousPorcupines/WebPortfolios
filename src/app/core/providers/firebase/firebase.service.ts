@@ -9,8 +9,7 @@ export class FirebaseService {
 
     public user: any;
 
-    constructor(private afAuth: AngularFireAuth, private afDataBase: AngularFireDatabase) {
-        // this.user = this.afAuth.authState.subscribe(x => console.log(x));
+    constructor(private afAuth: AngularFireAuth, public afDataBase: AngularFireDatabase) {
         this.user = this.afAuth.authState;
     }
     public subscribeToCollectionChange(collectionName, callbackMethod) {

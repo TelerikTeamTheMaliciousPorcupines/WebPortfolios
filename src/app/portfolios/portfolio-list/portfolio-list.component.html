@@ -33,7 +33,7 @@
             <img class="portrait-photo" [src]="portfolio.imgUrl" alt="">
             <div appMyLargeFont [inputFontSize]="fontSize" class="name"><strong>{{portfolio.firstName}} {{portfolio.lastName}}</strong></div>
             <div appMyLargeFont [inputFontSize]="fontSize" class="age">{{portfolio.age}} years old</div>
-            <div appMyLargeFont [inputFontSize]="fontSize">{{portfolio.profession}}</div>
+            <div appMyLargeFont [inputFontSize]="fontSize" class="proffesion">{{portfolio.profession}}</div>
             <a md-raised-button [routerLink]="['/portfolios/portfolio-detail', portfolio.email]" color="accent" class="view-details">View details</a>
         </li>
     </ul>
