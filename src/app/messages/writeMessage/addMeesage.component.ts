@@ -8,8 +8,8 @@ import { Message } from '../../models/message-model';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
-  templateUrl: './AddMeesage.component.html',
-  styleUrls: ['./AddMeesage.component.css']
+  templateUrl: './addMeesage.component.html',
+  styleUrls: ['./addMeesage.component.css']
 })
 export class AddMeesageComponent implements OnInit, OnDestroy {
   senderEmail: string;
