@@ -7,13 +7,8 @@
         "npm": "5.4.0"
     },
     "scripts": {
-        "ng": "ng",
         "start": "node server.js",
-        "build": "ng build",
-        "test": "ng test",
-        "lint": "ng lint",
-        "e2e": "ng e2e",
-        "postinstall": "ng build --aot -prod"
+        "postinstall": "ng build --env=prod"
     },
     "private": true,
     "dependencies": {
@@ -36,7 +31,8 @@
         "ng2-toastr": "^4.1.2",
         "rxjs": "^5.4.1",
         "zone.js": "^0.8.14",
-        "express": "^4.15.4"
+        "express": "^4.15.4",
+        "protractor": "~5.1.2"
     },
     "devDependencies": {
         "@angular/language-service": "^4.0.0",
@@ -52,7 +48,6 @@
         "karma-coverage-istanbul-reporter": "^1.2.1",
         "karma-jasmine": "~1.1.0",
         "karma-jasmine-html-reporter": "^0.2.2",
-        "protractor": "~5.1.2",
         "ts-node": "~3.0.4",
         "tslint": "~5.3.2",
         "typescript": "~2.3.3"
