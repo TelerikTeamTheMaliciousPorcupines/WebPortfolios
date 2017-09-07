@@ -7,7 +7,6 @@ import { Location } from '@angular/common';
 import { ISubscription } from 'rxjs/Subscription';
 
 @Component({
-  selector: 'app-portfolio-detail',
   templateUrl: './portfolio-detail.component.html',
   styleUrls: ['./portfolio-detail.component.css']
 })
@@ -16,12 +15,16 @@ export class PortfolioDetailComponent implements OnInit, OnDestroy {
   private routerSubscription: ISubscription;
   portfolio: Portfolio;
 
-  constructor(
+  receiverEmail: string;
 
+
+
+  constructor(
     private route: ActivatedRoute,
     private location: Location) {
   }
   ngOnInit(): void {
+    this.receiverEmail = this.route.snapshot.params['email'];
     this.routerSubscription = this.route.data.subscribe(data => {
       this.portfolio = data.portfolio;
     });

@@ -1,7 +1,7 @@
-import { Directive, ElementRef, Input, OnChanges } from '@angular/core';
+import { Directive, ElementRef, Input, OnChanges, Injectable } from '@angular/core';
 
 @Directive({
-  selector: '[myLargeFont]'
+  selector: '[appMyLargeFont]'
 })
 export class LargeFontDirective implements OnChanges {
 

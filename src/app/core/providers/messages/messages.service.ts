@@ -41,12 +41,12 @@ export class MessagesService {
             .then(messages => messages.filter(z => z.from === userEmail));
     }
     addMessage(message: Message) {
-        this.database.addItem(this.createMessagePath(message.to), message);
+        return this.database.addItem(this.createMessagePath(message.to), message);
     }
 
     private createMessagePath(additionalPath): string {
         additionalPath = btoa(additionalPath);
-        console.log( 'messages/' + additionalPath);
+        console.log('messages/' + additionalPath);
         return 'messages/' + additionalPath;
     }
 }

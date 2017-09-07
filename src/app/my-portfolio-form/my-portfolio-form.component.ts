@@ -1,3 +1,4 @@
+import { AppComponent } from './../app.component';
 import { ActivatedRoute } from '@angular/router';
 import { AuthenthicationService } from './../core/providers/authentication/authenthication.service';
 import { PortfolioService } from './../core/providers/portfolio/portfolio.service';
@@ -11,6 +12,8 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
   styleUrls: ['./my-portfolio-form.component.css']
 })
 export class MyPortfolioFormComponent implements OnInit {
+
+  toastr;
   isEdit: boolean;
   routerSubscription: any;
 
@@ -18,9 +21,8 @@ export class MyPortfolioFormComponent implements OnInit {
   rForm: FormGroup;
 
   constructor(private fb: FormBuilder, private portfolioService: PortfolioService,
-    private authService: AuthenthicationService, private route: ActivatedRoute, public toastr: ToastsManager,
-    private vRef: ViewContainerRef) {
-    this.toastr.setRootViewContainerRef(vRef);
+    private authService: AuthenthicationService, private route: ActivatedRoute, private appComp: AppComponent) {
+    this.toastr = appComp.toastr;
   }
 
   createForm() {

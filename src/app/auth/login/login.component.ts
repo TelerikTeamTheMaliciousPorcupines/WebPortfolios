@@ -1,3 +1,4 @@
+import { AppComponent } from './../../app.component';
 import { AuthenthicationService } from './../../core/providers/authentication/authenthication.service';
 import { CoreModule } from './../../core/core.module';
 import { UserLoginDetailsModel } from './../../models/user-login-model';
@@ -10,22 +11,39 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   public user = new UserLoginDetailsModel('', '');
-  public errorMsg = '';
+  // public errorMsg = '';
 
-  constructor(private authSv: AuthenthicationService, private router: Router) { }
+  private toastr;
+
+  constructor(private authSv: AuthenthicationService, private router: Router, appComp: AppComponent) {
+    this.toastr = appComp.toastr;
+  }
 
   login() {
+    const component = this;
     this.authSv.login(this.user)
       .then((isOk: boolean) => {
         if (isOk) {
+          component.toastr.success('Welcome ' + this.user.email);
           if (this.authSv.redirectUrl) {
             const url = this.authSv.redirectUrl;
-            this.authSv.redirectUrl = '';
-            this.router.navigateByUrl(url);
+            component.authSv.redirectUrl = '';
+            component.router.navigateByUrl(url);
           } else {
-            this.router.navigate(['./portfolios/all']);
+            component.router.navigate(['./portfolios/all']);
           }
         }
+      })
+      .catch(function (error: any) {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        if (errorCode === 'auth/wrong-password') {
+          component.toastr.error('Wrong password.');
+        } else {
+          component.toastr.error(errorMessage);
+        }
+        return false;
       });
   }
 

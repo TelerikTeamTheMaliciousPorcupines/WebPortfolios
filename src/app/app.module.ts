@@ -9,6 +9,16 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { MdProgressSpinnerModule, MdButtonModule } from '@angular/material';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { ToastOptions } from 'ng2-toastr';
+
+export class CustomOption extends ToastOptions {
+  animate = 'fade';
+  showCloseButton = true;
+
+  positionClass = 'toast-bottom-left';
+
+  maxShown: 3;
+}
 
 
 @NgModule({
@@ -27,7 +37,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
     AppRoutingModule,
     ToastModule.forRoot(),
   ],
-  providers: [],
+  providers: [{ provide: ToastOptions, useClass: CustomOption }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

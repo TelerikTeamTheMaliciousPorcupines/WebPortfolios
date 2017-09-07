@@ -4,7 +4,6 @@ import { Component, OnInit, OnChanges, SimpleChanges, Input, DoCheck, ViewChild,
 import { Portfolio } from '../../models/portfolio-model';
 
 @Component({
-  selector: 'app-portfolio-list',
   templateUrl: './portfolio-list.component.html',
   styleUrls: ['./portfolio-list.component.css']
 })
@@ -29,7 +28,6 @@ export class PortfolioListComponent implements OnInit {
 
   searchPortfolio(query: string) {
     this.filteredPortfolios = [];
-    console.log(this.fontSize);
     this.filteredPortfolios = this.portfolios.filter((portfolio) => {
       return portfolio.profession.toLowerCase().indexOf(query.toLowerCase()) > -1;
     });
