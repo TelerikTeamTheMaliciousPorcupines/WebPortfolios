@@ -31,9 +31,9 @@
     <ul class="flex-container">
         <li class="flex-item" *ngFor="let portfolio of (filteredPortfolios | sort: [sort, order])">
             <img class="portrait-photo" [src]="portfolio.imgUrl" alt="">
-            <div myLargeFont [inputFontSize]="fontSize" class="name"><strong>{{portfolio.firstName}} {{portfolio.lastName}}</strong></div>
-            <div myLargeFont [inputFontSize]="fontSize" class="age">{{portfolio.age}} years old</div>
-            <div myLargeFont [inputFontSize]="fontSize">{{portfolio.profession}}</div>
+            <div appMyLargeFont [inputFontSize]="fontSize" class="name"><strong>{{portfolio.firstName}} {{portfolio.lastName}}</strong></div>
+            <div appMyLargeFont [inputFontSize]="fontSize" class="age">{{portfolio.age}} years old</div>
+            <div appMyLargeFont [inputFontSize]="fontSize">{{portfolio.profession}}</div>
             <a md-raised-button [routerLink]="['/portfolios/portfolio-detail', portfolio.email]" color="accent" class="view-details">View details</a>
         </li>
     </ul>

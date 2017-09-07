@@ -7,7 +7,6 @@ import { Location } from '@angular/common';
 import { ISubscription } from 'rxjs/Subscription';
 
 @Component({
-  selector: 'app-portfolio-detail',
   templateUrl: './portfolio-detail.component.html',
   styleUrls: ['./portfolio-detail.component.css']
 })

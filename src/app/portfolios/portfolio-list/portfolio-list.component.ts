@@ -4,7 +4,6 @@ import { Component, OnInit, OnChanges, SimpleChanges, Input, DoCheck, ViewChild,
 import { Portfolio } from '../../models/portfolio-model';
 
 @Component({
-  selector: 'app-portfolio-list',
   templateUrl: './portfolio-list.component.html',
   styleUrls: ['./portfolio-list.component.css']
 })
