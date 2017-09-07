@@ -10,7 +10,7 @@ import { Message } from '../../models/message-model';
 export class MessagesComponent implements OnInit {
 
   private currentUserEmail: string;
-  protected AllMessages: Message[];
+  public AllMessages: Message[];
   constructor(private mService: MessagesService, private authService: AuthenthicationService) {
 
   }

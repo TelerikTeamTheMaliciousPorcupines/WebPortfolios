@@ -1,3 +1,5 @@
+import { MessagesService } from './../../core/providers/messages/messages.service';
+import { AppComponent } from './../../app.component';
 import { AuthenthicationService } from './../../core/providers/authentication/authenthication.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -12,11 +14,15 @@ import { Subscription } from 'rxjs/Subscription';
 export class AddMeesageComponent implements OnInit, OnDestroy {
   senderEmail: string;
   sub: Subscription;
-  protected receiverEmail: any;
+  public receiverEmail: any;
   message: Message;
   messageForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private route: ActivatedRoute, private authServ: AuthenthicationService) {
+  toastr;
+
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, private authServ: AuthenthicationService
+    , private appComp: AppComponent, private messsageService: MessagesService) {
+    this.toastr = appComp.toastr;
     this.message = new Message({});
   }
 
@@ -35,8 +41,15 @@ export class AddMeesageComponent implements OnInit, OnDestroy {
   }
 
   sendMessage(form) {
+    const componenet = this;
     this.message.from = this.senderEmail;
     this.message.text = form.text;
-    console.log(this.message);
+    this.messsageService.addMessage(this.message)
+      .then(() => {
+        componenet.toastr.success('You ve successfully sent message to ' + this.message.to);
+      })
+      .catch((err) => {
+        componenet.toastr.error('Please try again later');
+      });
   }
 }

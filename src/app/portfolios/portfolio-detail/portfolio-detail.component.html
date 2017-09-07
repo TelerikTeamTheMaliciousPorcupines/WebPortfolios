@@ -1,4 +1,4 @@
-<main>
+<main *ngIf="!!portfolio">
     <header class="header flex-container">
         <img [src]="portfolio.imgUrl" class="portrait-photo">
         <md-list class="margin-left-3">
@@ -43,3 +43,9 @@
     </div>
 
 </main>
+<div *ngIf="!portfolio">
+    <h1>This user currently doesn`t have portfolio!</h1>
+    <a class="contact-user" color="primary" md-raised-button [routerLink]="['/messages/addMessage', receiverEmail]">
+        <md-icon color="accent" md-list-icon>mail</md-icon>
+        Contact {{receiverEmail}}</a>
+</div>

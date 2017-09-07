@@ -1,5 +1,6 @@
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { AuthenthicationService } from './core/providers/authentication/authenthication.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewContainerRef } from '@angular/core';
 import {
   Event, NavigationStart, NavigationEnd, NavigationError, Router,
   NavigationCancel, RouterStateSnapshot
@@ -12,10 +13,15 @@ import {
 })
 
 export class AppComponent implements OnInit, OnDestroy {
-  protected loading = true;
-  protected showMessages = false;
+  private static abv = 0;
+  public loading = true;
+  private showMessages = false;
   private currentUserEmail;
-  constructor(private router: Router, private authService: AuthenthicationService) {
+  constructor(private router: Router, private authService: AuthenthicationService, public toastr: ToastsManager,
+    private vRef: ViewContainerRef) {
+    this.toastr.setRootViewContainerRef(vRef);
+    AppComponent.abv = AppComponent.abv + 1;
+    console.log(AppComponent.abv);
   }
 
 

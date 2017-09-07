@@ -53,18 +53,7 @@ export class FirebaseService {
     }
 
     public signIn(email: string, password: string) {
-        return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
-            .catch(function (error: any) {
-                // Handle Errors here.
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                if (errorCode === 'auth/weak-password') {
-                    alert('The password is too weak.');
-                } else {
-                    alert(errorMessage);
-                }
-                return false;
-            });
+        return this.afAuth.auth.createUserWithEmailAndPassword(email, password);
     }
     public login(email: string, password: string, shouldRemember: boolean) {
         let persistence = firebase.auth.Auth.Persistence.SESSION;
@@ -74,19 +63,9 @@ export class FirebaseService {
         return this.afAuth.auth.setPersistence(persistence)
             .then(() => {
                 return this.afAuth.auth.signInWithEmailAndPassword(email, password);
-            })
-            .catch(function (error: any) {
-                // Handle Errors here.
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                if (errorCode === 'auth/wrong-password') {
-                    alert('Wrong password.');
-                } else {
-                    alert(errorMessage);
-                }
-                return false;
             });
     }
+
     public logout() {
         return this.afAuth.auth.signOut();
     }
