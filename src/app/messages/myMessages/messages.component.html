@@ -1,16 +1,22 @@
-<p *ngFor="let message of AllMessages">
-    <md-icon (click)="toggle_class()" color="accent" md-list-icon>mail</md-icon>
+<div *ngFor="let message of AllMessages">
+    <md-icon class="mail-icon" (click)="toggle_class()" color="accent" md-list-icon>mail</md-icon>
     {{message.from}}
-</p>
-
-<div [className]="my_Class">
-    <div class="modal__inner">
-        <div class="wrapper">
-            <p class="modal__description ">
-                Modal Test
-            </p>
+    <div [className]="my_Class">
+        <div class="modal__inner">
+            <h4 class="message-sender">Message from: <em>{{message.from}}</em></h4>
+            <div class="wrapper">
+                <p class="modal__description">
+                    <em>{{message.text}}</em>
+                </p>
+                <a md-raised-button (click)="toggle_class()" [routerLink]="['/messages/addMessage', message.from]" color="accent" class="contact-button">
+                    <md-icon>reply</md-icon>
+                    Reply
+                </a>
+                <a md-raised-button (click)="toggle_class()" color="primary" class="contact-button">
+                    <md-icon>cancel</md-icon>
+                    Close
+                </a>
+            </div>
         </div>
     </div>
-    Modal Test
-    <div class="modal__close" (click)="toggle_class()">X</div>
 </div>
