@@ -16,15 +16,15 @@ export class MyPortFolioResolver implements Resolve<Portfolio>
     constructor(
         private portfolioService: PortfolioService,
         private authService: AuthenthicationService,
-        private router: Router) {}
+        private router: Router) { }
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Portfolio> {
         const email = route.params['email'];
         console.log(email);
         return Observable.fromPromise(this.portfolioService.getPortfolio(email))
-        .catch((error: any) => {
-            console.log(`${error}. Heading back to all portfolios`);
-            this.router.navigate(['/portfolios/all']);
-            return Observable.of(null);
-        });
+            .catch((error: any) => {
+                console.log(`${error}. Heading back to all portfolios`);
+                this.router.navigate(['/portfolios/all']);
+                return Observable.of(null);
+            });
     }
 }

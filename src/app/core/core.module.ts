@@ -1,3 +1,4 @@
+import { ModalModule } from './modal/modal.module';
 import { MessagesService } from './providers/messages/messages.service';
 import { MyPortFolioResolver } from './../my-portfolio-form/my-portfolio.resolver.service';
 import { PortfolioDetailsResolver } from './../portfolios/portfolio-detail/portfolio-detail.resolver.service';
@@ -9,6 +10,7 @@ import { AuthenthicationService } from './providers/authentication/authenthicati
 import { NgModule, SkipSelf, Optional, ModuleWithProviders } from '@angular/core';
 import { AngularFireModule } from 'angularfire2';
 import { AuthGuard } from './providers/guards/auth-guard.service';
+import { CanDeactivateGuard } from './providers/guards/can-deactivate-guard.service';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyC7SqPbVmybvSQw27I4Nw3vk5V4viImrbk',
@@ -22,7 +24,8 @@ const firebaseConfig = {
 @NgModule({
   imports: [
     AngularFireModule.initializeApp(firebaseConfig),
-  ],
+    ModalModule
+],
 })
 export class CoreModule {
   constructor( @Optional() @SkipSelf() parentModule: CoreModule) {
@@ -36,8 +39,8 @@ export class CoreModule {
     return {
       ngModule: CoreModule,
       providers: [FirebaseService, AuthenthicationService, AngularFireAuth, PortfolioService,
-        AngularFireDatabase, PortfolioDetailsResolver, AuthGuard, MyPortFolioResolver
-        , MessagesService]
+        AngularFireDatabase, PortfolioDetailsResolver, AuthGuard, CanDeactivateGuard,
+         MyPortFolioResolver, MessagesService]
     };
   }
 }

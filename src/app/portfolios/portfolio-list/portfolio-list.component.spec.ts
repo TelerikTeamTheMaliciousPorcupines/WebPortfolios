@@ -40,7 +40,7 @@ describe('PortfolioListComponent', () => {
     });
 
     it('ngOnInit should set portfolios', () => {
-        component.message = { 'nativeElement': { 'value': '' } };
+
         component.ngOnInit();
         expect(JSON.stringify(component.portfolios[0])).toEqual(JSON.stringify(portfolio));
 

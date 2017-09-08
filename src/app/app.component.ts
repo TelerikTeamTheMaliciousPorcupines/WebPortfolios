@@ -13,15 +13,14 @@ import {
 })
 
 export class AppComponent implements OnInit, OnDestroy {
-  private static abv = 0;
+
   public loading = true;
   private showMessages = false;
   private currentUserEmail;
   constructor(private router: Router, private authService: AuthenthicationService, public toastr: ToastsManager,
     private vRef: ViewContainerRef) {
     this.toastr.setRootViewContainerRef(vRef);
-    AppComponent.abv = AppComponent.abv + 1;
-    console.log(AppComponent.abv);
+   
   }
 
 
