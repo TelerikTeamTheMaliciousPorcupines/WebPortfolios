@@ -1,1 +1,16 @@
-<p *ngFor="let message of AllMessages"><a routerLink="/portfolios/portfolio-detail/{{message.from}}">{{message.from}}</a> :{{message.text}}</p>
+<p *ngFor="let message of AllMessages">
+    <md-icon (click)="toggle_class()" color="accent" md-list-icon>mail</md-icon>
+    {{message.from}}
+</p>
+
+<div [className]="my_Class">
+    <div class="modal__inner">
+        <div class="wrapper">
+            <p class="modal__description ">
+                Modal Test
+            </p>
+        </div>
+    </div>
+    Modal Test
+    <div class="modal__close" (click)="toggle_class()">X</div>
+</div>
