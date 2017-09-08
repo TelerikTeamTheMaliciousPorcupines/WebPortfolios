@@ -15,9 +15,9 @@ import {RouterModule} from '@angular/router';
 @NgModule({
   imports: [
     RouterModule,
-    SharedModule,
     CommonModule,
     PortfoliosRoutesModule,
+    SharedModule,
     MdButtonModule,
     MdCheckboxModule,
     MdInputModule,

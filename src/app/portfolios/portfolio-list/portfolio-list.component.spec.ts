@@ -1,5 +1,5 @@
-import { Portfolio } from './../../models/portfolio-model';
 /* tslint:disable:no-unused-variable */
+import { Portfolio } from './../../models/portfolio-model';
 import { Observable } from 'rxjs/Observable';
 import { By } from '@angular/platform-browser';
 import 'rxjs/add/observable/of';
@@ -10,6 +10,7 @@ describe('PortfolioListComponent', () => {
     let pS;
     let portfolio: Portfolio;
     let collection;
+    let observ;
 
     beforeEach(() => {
         collection = [];
@@ -30,13 +31,21 @@ describe('PortfolioListComponent', () => {
             id: '12',
         };
         collection.push(portfolio);
-        pS = { 'collectionChange': (Observable.of(collection)) };
+        observ = Observable.of(collection);
+        pS = { 'collectionChange': (observ) };
         component = new PortfolioListComponent(pS);
         component.message = { 'nativeElement': { 'value': '' } };
     });
 
     it('should create', () => {
         expect(component).toBeTruthy();
+    });
+
+    it('ngOnInit should call subscribe once', () => {
+        spyOn(observ, 'subscribe');
+        component.ngOnInit();
+        expect(observ.subscribe).toHaveBeenCalledTimes(1);
+
     });
 
     it('ngOnInit should set portfolios', () => {
@@ -51,6 +60,14 @@ describe('PortfolioListComponent', () => {
 
         component.ngOnInit();
         expect(component.searchPortfolio).toHaveBeenCalledTimes(1);
+    });
+
+    it('ngOnDestroy should call unsubscribe once', () => {
+        component.subscription = { 'unsubscribe': () => { }, 'closed': false };
+        spyOn(component.subscription, 'unsubscribe');
+        component.ngOnDestroy();
+        expect(component.subscription.unsubscribe).toHaveBeenCalledTimes(1);
+
     });
 
     it('searchPortfolio should return all portfolios if no filter is applied', () => {

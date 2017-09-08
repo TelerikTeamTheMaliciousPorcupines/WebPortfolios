@@ -3,7 +3,6 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Location } from '@angular/common';
 import { ISubscription } from 'rxjs/Subscription';
 
 @Component({
@@ -12,16 +11,12 @@ import { ISubscription } from 'rxjs/Subscription';
 })
 export class PortfolioDetailComponent implements OnInit, OnDestroy {
 
-  private routerSubscription: ISubscription;
+  routerSubscription: ISubscription;
   portfolio: Portfolio;
-
   receiverEmail: string;
 
-
-
   constructor(
-    private route: ActivatedRoute,
-    private location: Location) {
+    private route: ActivatedRoute) {
   }
   ngOnInit(): void {
     this.receiverEmail = this.route.snapshot.params['email'];

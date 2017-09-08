@@ -1,3 +1,4 @@
+import { ISubscription } from 'rxjs/Subscription';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { AuthenthicationService } from './core/providers/authentication/authenthication.service';
 import { Component, OnInit, OnDestroy, ViewContainerRef } from '@angular/core';
@@ -13,30 +14,33 @@ import {
 })
 
 export class AppComponent implements OnInit, OnDestroy {
-
+  private subscriptions: ISubscription[];
   public loading = true;
   private showMessages = false;
   private currentUserEmail;
   constructor(private router: Router, private authService: AuthenthicationService, public toastr: ToastsManager,
     private vRef: ViewContainerRef) {
     this.toastr.setRootViewContainerRef(vRef);
-   
   }
 
 
   ngOnDestroy(): void {
+    this.subscriptions.forEach(x => x.unsubscribe());
   }
   ngOnInit(): void {
-    this.authService.currentUser.subscribe(x => {
-      if (!!x) {
-        this.currentUserEmail = x.email;
-      } else {
-        this.currentUserEmail = '';
-      }
-    });
-    this.router.events.subscribe(event => {
-      this.checkRouterEvent(event);
-    });
+    this.subscriptions = [];
+    this.subscriptions.push(
+      this.authService.currentUser.subscribe(x => {
+        if (!!x) {
+          this.currentUserEmail = x.email;
+        } else {
+          this.currentUserEmail = '';
+        }
+      }));
+    this.subscriptions.push(
+      this.router.events.subscribe(event => {
+        this.checkRouterEvent(event);
+      }));
   }
 
 
@@ -44,7 +48,6 @@ export class AppComponent implements OnInit, OnDestroy {
     if (routerEvent instanceof NavigationStart) {
       this.loading = true;
     }
-
     if (routerEvent instanceof NavigationEnd ||
       routerEvent instanceof NavigationCancel ||
       routerEvent instanceof NavigationError) {
