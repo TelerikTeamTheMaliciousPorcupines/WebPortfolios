@@ -13,6 +13,8 @@ export class HeaderComponent implements OnInit {
   toastr;
   isUserLogedIn = false;
   curentUserEmail = '';
+  isClassMenuIconXVisible = false;
+  isClassMobileMenuContentVisible = false;
   constructor(private auth: AuthenthicationService, private router: Router, private appComp: AppComponent) {
     this.toastr = appComp.toastr;
   }
