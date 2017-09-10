@@ -3,6 +3,12 @@
     display: block;
 }
 
+@media (max-width: 450px) {
+    .title {
+        padding-top: 90px;
+    }
+}
+
 .toolbar {
     display: flex;
     flex-wrap: wrap;
