@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { MessagesComponent } from './myMessages/messages.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
+
 @NgModule({
   imports: [
     ReactiveFormsModule,
@@ -15,6 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MdButtonModule,
     MdIconModule,
   ],
-  declarations: [MessagesComponent, AddMeesageComponent]
+  declarations: [MessagesComponent, AddMeesageComponent
+]
 })
 export class MessagesModule { }

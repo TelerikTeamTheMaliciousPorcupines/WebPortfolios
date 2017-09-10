@@ -1,11 +1,18 @@
-<md-toolbar color="primary">
+<md-toolbar class="toolbar" color="primary">
     <a routerLink="/portfolios">
         <img class="header__logo" src="../../../../assets/images/Logo-portfoos.png" alt="company-logo">
     </a>
     <span class="spacer"></span>
-    <span class="text" *ngIf="isUserLogedIn">{{curentUserEmail}}</span>
-    <a md-raised-button routerLink="/my-portfolio-form/{{curentUserEmail}}" color="accent" class="auth-button" *ngIf="isUserLogedIn">My portfolio</a>
-    <a md-raised-button routerLink="/auth/signUp" color="accent" class="auth-button" *ngIf="!isUserLogedIn">Sign up</a>
-    <a md-raised-button routerLink="/auth/login" color="accent" class="auth-button" *ngIf="!isUserLogedIn">Log in</a>
-    <a md-raised-button (click)="SignOut()" color="accent" class="auth-button" *ngIf="isUserLogedIn">Sign Out</a>
+    <div class="menu-logo" [ngClass]="{'menu-icon--close-x': isClassMenuIconXVisible}" (click)="isClassMobileMenuContentVisible = !isClassMobileMenuContentVisible;" (click)="isClassMenuIconXVisible = !isClassMenuIconXVisible">
+        <div class="menu-logo__middle" [ngClass]="{'menu-icon--close-x': isClassMenuIconXVisible}"></div>
+    </div>
+
+    <div class="menu-content" [ngClass]="{'menu-content--is-visible': isClassMobileMenuContentVisible}">
+        <span class="text" *ngIf="isUserLogedIn">{{curentUserEmail}}</span>
+        <a md-raised-button routerLink="/my-portfolio-form/{{curentUserEmail}}" color="accent" class="auth-button" *ngIf="isUserLogedIn">My portfolio</a>
+        <a md-raised-button routerLink="/auth/signUp" color="accent" class="auth-button" *ngIf="!isUserLogedIn">Sign up</a>
+        <a md-raised-button routerLink="/auth/login" color="accent" class="auth-button" *ngIf="!isUserLogedIn">Log in</a>
+        <a md-raised-button (click)="SignOut()" color="accent" class="auth-button" *ngIf="isUserLogedIn">Sign Out</a>
+    </div>
+
 </md-toolbar>

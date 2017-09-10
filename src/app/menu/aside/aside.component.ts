@@ -1,4 +1,6 @@
+import { AuthenthicationService } from './../../core/providers/authentication/authenthication.service';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-aside',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AsideComponent implements OnInit {
 
-  constructor() { }
+  public userEmail;
+  constructor(private authService: AuthenthicationService) {
+  }
+
 
   ngOnInit() {
+    this.authService.currentUser.subscribe(user => {
+      if (!!user) {
+                this.userEmail = user.email;
+            } else {
+                this.userEmail = 'notRegisterUser';
+            }
+    });
   }
 
 }

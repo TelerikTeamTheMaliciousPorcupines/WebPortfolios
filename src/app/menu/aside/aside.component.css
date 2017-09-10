@@ -19,3 +19,9 @@ md-divider {
 .margin-2 {
     margin-top: 5px;
 }
+
+@media (max-width: 450px) {
+    .margin-2 {
+        margin-top: 60px;
+    }
+}

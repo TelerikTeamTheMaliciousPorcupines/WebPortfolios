@@ -11,10 +11,17 @@ export class MessagesComponent implements OnInit {
 
   private currentUserEmail: string;
   public AllMessages: Message[];
+  public my_Class = 'modal';
   constructor(private mService: MessagesService, private authService: AuthenthicationService) {
 
   }
-
+  toggle_class() {
+    if (this.my_Class === 'modal') {
+      this.my_Class = 'modal--is-visible modal';
+    } else {
+      this.my_Class = 'modal';
+    }
+  }
   ngOnInit() {
     this.mService.initChangeListen(this.authService.currentUserEmail);
     this.mService.collectionChange.subscribe(messages => {

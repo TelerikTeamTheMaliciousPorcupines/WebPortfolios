@@ -3,6 +3,12 @@
     display: block;
 }
 
+@media (max-width: 450px) {
+    .title {
+        padding-top: 90px;
+    }
+}
+
 .toolbar {
     display: flex;
     flex-wrap: wrap;
@@ -30,6 +36,14 @@
     padding: 0px;
     margin: 30px 25px;
     text-align: center;
+}
+
+@media (max-width: 320px) {
+    .flex-item {
+        width: 130px;
+        height: 238px;
+        margin: 55px 0;
+    }
 }
 
 .portrait-photo {

@@ -47,6 +47,7 @@ export class AddMeesageComponent implements OnInit, OnDestroy {
     this.messsageService.addMessage(this.message)
       .then(() => {
         componenet.toastr.success('You ve successfully sent message to ' + this.message.to);
+        this.messageForm.reset();
       })
       .catch((err) => {
         componenet.toastr.error('Please try again later');
