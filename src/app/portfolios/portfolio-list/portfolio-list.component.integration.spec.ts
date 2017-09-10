@@ -119,6 +119,7 @@ describe('PortfolioListComponent Integration Tests', () => {
         });
         it('search by proffesion should return right portfoio  ', () => {
             component.searchPortfolio('civilEng');
+            fixture.detectChanges();
             expect(debugEl.query(By.css('.proffesion')).nativeElement.textContent)
                 .toContain('civilEng');
             expect(debugEl.query(By.css('.age')).nativeElement.textContent)

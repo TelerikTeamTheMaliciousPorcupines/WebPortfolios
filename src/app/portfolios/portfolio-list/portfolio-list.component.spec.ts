@@ -95,7 +95,6 @@ describe('PortfolioListComponent', () => {
             id: '12',
         };
         collection.push(portfolio2);
-
         component.portfolios = collection;
         component.searchPortfolio('manager');
         expect(JSON.stringify(component.filteredPortfolios[0])).toEqual(JSON.stringify(portfolio2));
