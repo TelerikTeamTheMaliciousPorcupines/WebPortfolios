@@ -107,7 +107,7 @@ describe('PortfolioListComponent Integration Tests', () => {
                 age: 20,
                 profession: 'civilEng',
                 interests: ['interest2'],
-                workingExperience: 0,
+                workingExperience: 2,
                 languages: ['German'],
                 projects: ['one'],
                 hobbies: ['notCoding'],
@@ -117,8 +117,65 @@ describe('PortfolioListComponent Integration Tests', () => {
             };
             collection.push(portfolio2);
         });
-        it('search by proffesion should return right portfoio  ', () => {
+        it('search by proffesion should return right portfolio  ', () => {
             component.searchPortfolio('civilEng');
+            fixture.detectChanges();
+            expect(debugEl.query(By.css('.proffesion')).nativeElement.textContent)
+                .toContain('civilEng');
+            expect(debugEl.query(By.css('.age')).nativeElement.textContent)
+                .toContain('20');
+            expect(element.querySelector('.view-details').getAttribute('href'))
+                .toContain('TestMail2');
+            expect(debugEl.query(By.css('.name strong')).nativeElement.textContent)
+                .toBe('Test2 LastTest2');
+        });
+
+        it('order by age descending should return right portfolio as first  ', () => {
+            component.sort = 'age';
+            component.order = 'descending';
+            component.searchPortfolio('');
+            fixture.detectChanges();
+            expect(debugEl.query(By.css('.proffesion')).nativeElement.textContent)
+                .toContain('civilEng');
+            expect(debugEl.query(By.css('.age')).nativeElement.textContent)
+                .toContain('20');
+            expect(element.querySelector('.view-details').getAttribute('href'))
+                .toContain('TestMail2');
+            expect(debugEl.query(By.css('.name strong')).nativeElement.textContent)
+                .toBe('Test2 LastTest2');
+        });
+        it('order by age ascending should return right portfolio as first  ', () => {
+            component.sort = 'age';
+            component.order = 'ascending';
+            component.searchPortfolio('');
+            fixture.detectChanges();
+            expect(debugEl.query(By.css('.proffesion')).nativeElement.textContent)
+                .toContain('testProfesion');
+            expect(debugEl.query(By.css('.age')).nativeElement.textContent)
+                .toContain('10');
+            expect(element.querySelector('.view-details').getAttribute('href'))
+                .toContain('TestMail');
+            expect(debugEl.query(By.css('.name strong')).nativeElement.textContent)
+                .toBe('Test LastTest');
+        });
+        it('order by workExp ascending should return right portfolio as first  ', () => {
+            component.sort = 'workingExperience';
+            component.order = 'ascending';
+            component.searchPortfolio('');
+            fixture.detectChanges();
+            expect(debugEl.query(By.css('.proffesion')).nativeElement.textContent)
+                .toContain('testProfesion');
+            expect(debugEl.query(By.css('.age')).nativeElement.textContent)
+                .toContain('10');
+            expect(element.querySelector('.view-details').getAttribute('href'))
+                .toContain('TestMail');
+            expect(debugEl.query(By.css('.name strong')).nativeElement.textContent)
+                .toBe('Test LastTest');
+        });
+        it('order by workExp descending should return right portfolio as first  ', () => {
+            component.sort = 'workingExperience';
+            component.order = 'descending';
+            component.searchPortfolio('');
             fixture.detectChanges();
             expect(debugEl.query(By.css('.proffesion')).nativeElement.textContent)
                 .toContain('civilEng');
@@ -131,3 +188,5 @@ describe('PortfolioListComponent Integration Tests', () => {
         });
     });
 });
+
+
