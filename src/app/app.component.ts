@@ -18,6 +18,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public loading = true;
   private showMessages = false;
   private currentUserEmail;
+  private opacity = 1;
   constructor(private router: Router, private authService: AuthenthicationService, public toastr: ToastsManager,
     private vRef: ViewContainerRef) {
     this.toastr.setRootViewContainerRef(vRef);

@@ -25,6 +25,13 @@
 .header {
     text-align: center;
     padding-top: 35px;
+    margin-top: 0;
+}
+
+@media (max-width: 450px) {
+    .header {
+        margin-top: 100px;
+    }
 }
 
 .flex-item {

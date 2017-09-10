@@ -3,16 +3,16 @@
     <div class="container">
         <md-spinner class="spinner" *ngIf="loading"></md-spinner>
         <div *ngIf="!loading">
-            <div class="main-content">
+            <div class="main-content" [ngStyle]="{ 'opacity': opacity }">
                 <router-outlet></router-outlet>
             </div>
-            <button (click)="togleMessages()" class="show-messages-button" md-raised-button *ngIf="!showMessages && !!currentUserEmail" color="primary">Show Messages</button>
+            <button (click)="togleMessages()" (click)="opacity=0.5" class="show-messages-button" md-raised-button *ngIf="!showMessages && !!currentUserEmail" color="primary">Show Messages</button>
             <div class="message-content" *ngIf="showMessages && !!currentUserEmail">
                 <div class="messages">
                     <p class="medium-text">Messages</p>
                     <router-outlet name="messages"></router-outlet>
                 </div>
-                <button (click)="togleMessages()" class="hide-messages-button" md-raised-button color="accent">Hide Messages</button>
+                <button (click)="togleMessages()" (click)="opacity=1" class="hide-messages-button" md-raised-button color="accent">Hide Messages</button>
             </div>
         </div>
     </div>

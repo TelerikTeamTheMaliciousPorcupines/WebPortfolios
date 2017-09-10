@@ -18,7 +18,7 @@
         height: 500px;
         top: 0.5%;
         right: 0;
-        width: 15%;
+        width: 220px;
         background-color: #673BB7;
         color: white;
         display: block;
@@ -28,7 +28,7 @@
     
     .show-messages-button {
         position: absolute;
-        top: 0.5%;
+        top: 5px;
         right: 0;
         margin: 0;
     }
@@ -36,6 +36,7 @@
     @media (max-width: 450px) {
         .show-messages-button {
             margin-top: 37px;
+            top: 24px;
         }
     }
     

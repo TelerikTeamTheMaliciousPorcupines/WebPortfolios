@@ -18,6 +18,13 @@
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: flex-start;
+    margin-top: 15px;
+}
+
+@media(max-width: 450px) {
+    .flex-container {
+        margin-top: 100px;
+    }
 }
 
 .portrait-photo {
