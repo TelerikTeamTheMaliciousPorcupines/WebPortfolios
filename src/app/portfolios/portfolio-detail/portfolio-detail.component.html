@@ -4,15 +4,15 @@
         <md-list class="margin-left-3">
             <md-list-item>
                 <md-icon color="accent" md-list-icon>person</md-icon>
-                <h2>{{portfolio.firstName}} {{portfolio.lastName}}</h2>
+                <h2 class="name">{{portfolio.firstName}} {{portfolio.lastName}}</h2>
             </md-list-item>
-            <md-list-item>
+            <md-list-item class="age">
                 {{portfolio.age}} years old
             </md-list-item>
-            <md-list-item>
+            <md-list-item class="proffesion">
                 {{portfolio.profession}}
             </md-list-item>
-            <md-list-item>
+            <md-list-item class="working-exp">
                 {{portfolio.workingExperience}} years working experience
             </md-list-item>
             <md-list-item>
@@ -27,16 +27,16 @@
                 Contact {{portfolio.firstName}} {{portfolio.lastName}}</a>
         </div>
         <md-tab-group class="tabs margin-left-5">
-            <md-tab label="Interests">
+            <md-tab label="Interests" class="interests">
                 <div class="text " *ngFor="let interest of portfolio.interests "> {{interest}}</div>
             </md-tab>
-            <md-tab label="Projects">
+            <md-tab label="Projects" class="projects">
                 <div class="text " *ngFor="let project of portfolio.projects "> {{project}}</div>
             </md-tab>
-            <md-tab label="Languages ">
+            <md-tab label="Languages " class="languages">
                 <div class="text " *ngFor="let language of portfolio.languages "> {{language}}</div>
             </md-tab>
-            <md-tab label="Hobbies">
+            <md-tab label="Hobbies" class="hobbies">
                 <div class="text " *ngFor="let hobby of portfolio.hobbies "> {{hobby}}</div>
             </md-tab>
         </md-tab-group>
@@ -44,7 +44,7 @@
 
 </main>
 <div *ngIf="!portfolio">
-    <h1>This user currently doesn`t have portfolio!</h1>
+    <h1 class="no-portfolio-text">This user currently doesn`t have portfolio!</h1>
     <a class="contact-user" color="primary" md-raised-button [routerLink]="['/messages/addMessage', receiverEmail]">
         <md-icon color="accent" md-list-icon>mail</md-icon>
         Contact {{receiverEmail}}</a>
