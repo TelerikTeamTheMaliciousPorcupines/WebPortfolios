@@ -1,7 +1,8 @@
+import { ISubscription } from 'rxjs/Subscription';
 import { AppComponent } from './../../app.component';
 import { AuthenthicationService } from './../../core/providers/authentication/authenthication.service';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,7 +10,8 @@ import { Router } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
+  private subscription: ISubscription;
   toastr;
   isUserLogedIn = false;
   curentUserEmail = '';
@@ -30,7 +32,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.auth.currentUser.subscribe(x => {
+    this.subscription = this.auth.currentUser.subscribe(x => {
       if (!!x) {
         this.curentUserEmail = x.email;
         this.encryptedEmail = btoa(x.email);
@@ -41,5 +43,8 @@ export class HeaderComponent implements OnInit {
         this.isUserLogedIn = false;
       }
     });
+  }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

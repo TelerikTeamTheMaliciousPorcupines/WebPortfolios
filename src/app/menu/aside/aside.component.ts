@@ -1,5 +1,6 @@
+import { ISubscription } from 'rxjs/Subscription';
 import { AuthenthicationService } from './../../core/providers/authentication/authenthication.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -7,21 +8,25 @@ import { Observable } from 'rxjs/Observable';
   templateUrl: './aside.component.html',
   styleUrls: ['./aside.component.css']
 })
-export class AsideComponent implements OnInit {
-
+export class AsideComponent implements OnInit, OnDestroy {
+  private subscription: ISubscription;
   public userEmail;
   constructor(private authService: AuthenthicationService) {
   }
 
 
   ngOnInit() {
-    this.authService.currentUser.subscribe(user => {
+    this.subscription = this.authService.currentUser.subscribe(user => {
       if (!!user) {
-                this.userEmail = btoa(user.email);
-            } else {
-                this.userEmail = 'notRegisterUser';
-            }
+        this.userEmail = btoa(user.email);
+      } else {
+        this.userEmail = 'notRegisterUser';
+      }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }
