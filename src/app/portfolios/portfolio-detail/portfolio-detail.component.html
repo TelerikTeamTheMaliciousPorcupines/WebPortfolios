@@ -22,7 +22,7 @@
     </header>
     <div class="flex-container">
         <div>
-            <a class="contact-user" color="primary" md-raised-button [routerLink]="['/messages/addMessage', portfolio.email]">
+            <a class="contact-user" color="primary" md-raised-button [routerLink]="['/messages/addMessage',( portfolio.email | encrypt)]">
                 <md-icon color="accent" md-list-icon>mail</md-icon>
                 Contact {{portfolio.firstName}} {{portfolio.lastName}}</a>
         </div>
