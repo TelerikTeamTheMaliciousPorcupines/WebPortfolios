@@ -13,6 +13,8 @@ export class HeaderComponent implements OnInit {
   toastr;
   isUserLogedIn = false;
   curentUserEmail = '';
+
+  encryptedEmail = '';
   isClassMenuIconXVisible = false;
   isClassMobileMenuContentVisible = false;
   constructor(private auth: AuthenthicationService, private router: Router, private appComp: AppComponent) {
@@ -31,9 +33,11 @@ export class HeaderComponent implements OnInit {
     this.auth.currentUser.subscribe(x => {
       if (!!x) {
         this.curentUserEmail = x.email;
+        this.encryptedEmail = btoa(x.email);
         this.isUserLogedIn = true;
       } else {
         this.curentUserEmail = '';
+        this.encryptedEmail = '';
         this.isUserLogedIn = false;
       }
     });

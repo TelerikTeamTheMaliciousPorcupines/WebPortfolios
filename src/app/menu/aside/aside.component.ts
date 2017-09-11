@@ -17,7 +17,7 @@ export class AsideComponent implements OnInit {
   ngOnInit() {
     this.authService.currentUser.subscribe(user => {
       if (!!user) {
-                this.userEmail = user.email;
+                this.userEmail = btoa(user.email);
             } else {
                 this.userEmail = 'notRegisterUser';
             }

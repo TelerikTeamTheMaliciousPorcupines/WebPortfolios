@@ -9,7 +9,7 @@
 
     <div class="menu-content" [ngClass]="{'menu-content--is-visible': isClassMobileMenuContentVisible}">
         <span class="text" *ngIf="isUserLogedIn">{{curentUserEmail}}</span>
-        <a md-raised-button routerLink="/my-portfolio-form/{{curentUserEmail}}" color="accent" class="auth-button" *ngIf="isUserLogedIn">My portfolio</a>
+        <a md-raised-button routerLink="/my-portfolio-form/{{encryptedEmail}}" color="accent" class="auth-button" *ngIf="isUserLogedIn">My portfolio</a>
         <a md-raised-button routerLink="/auth/signUp" color="accent" class="auth-button" *ngIf="!isUserLogedIn">Sign up</a>
         <a md-raised-button routerLink="/auth/login" color="accent" class="auth-button" *ngIf="!isUserLogedIn">Log in</a>
         <a md-raised-button (click)="SignOut()" color="accent" class="auth-button" *ngIf="isUserLogedIn">Sign Out</a>

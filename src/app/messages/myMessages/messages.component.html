@@ -1,18 +1,18 @@
-<div *ngFor="let message of AllMessages">
-    <md-icon class="mail-icon" (click)="toggle_class()" color="accent" md-list-icon>mail</md-icon>
+<div *ngFor="let message of AllMessages;let i=index">
+    <md-icon class="mail-icon" (click)="toggle_message(i)" color="accent" md-list-icon>mail</md-icon>
     {{message.from}}
-    <div [className]="my_Class">
+    <div *ngIf='message["show"]' class="modal--is-visible modal">
         <div class="modal__inner">
             <h4 class="message-sender">Message from: <em>{{message.from}}</em></h4>
             <div class="wrapper">
                 <p class="modal__description">
                     <em>{{message.text}}</em>
                 </p>
-                <a md-raised-button (click)="toggle_class()" [routerLink]="['/messages/addMessage', message.from]" color="accent" class="contact-button">
+                <a md-raised-button (click)="toggle_message(i)" [routerLink]="['/messages/addMessage', (message.from | encrypt)]" color="accent" class="contact-button">
                     <md-icon>reply</md-icon>
                     Reply
                 </a>
-                <a md-raised-button (click)="toggle_class()" color="primary" class="contact-button">
+                <a md-raised-button (click)="toggle_message(i)" color="primary" class="contact-button">
                     <md-icon>cancel</md-icon>
                     Close
                 </a>

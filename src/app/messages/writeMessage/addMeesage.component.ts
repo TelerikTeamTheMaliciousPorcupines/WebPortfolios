@@ -29,7 +29,7 @@ export class AddMeesageComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.senderEmail = this.authServ.currentUserEmail;
     this.sub = this.route.params.subscribe(params => {
-      this.receiverEmail = params['email'];
+      this.receiverEmail = atob(params['email']);
       this.message.to = this.receiverEmail;
     });
     this.messageForm = this.fb.group({

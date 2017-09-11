@@ -8,26 +8,23 @@ import { Message } from '../../models/message-model';
   styleUrls: ['./messages.component.css']
 })
 export class MessagesComponent implements OnInit {
-
   private currentUserEmail: string;
   public AllMessages: Message[];
-  public my_Class = 'modal';
   constructor(private mService: MessagesService, private authService: AuthenthicationService) {
 
   }
-  toggle_class() {
-    if (this.my_Class === 'modal') {
-      this.my_Class = 'modal--is-visible modal';
+  toggle_message(index: number) {
+    if (this.AllMessages[index]['show']) {
+      this.AllMessages[index]['show'] = false;
     } else {
-      this.my_Class = 'modal';
+      this.AllMessages[index]['show'] = true;
     }
   }
   ngOnInit() {
     this.mService.initChangeListen(this.authService.currentUserEmail);
     this.mService.collectionChange.subscribe(messages => {
-      console.log(messages);
+      messages.forEach(x => x['show'] = false);
       this.AllMessages = messages;
     });
   }
-
 }
