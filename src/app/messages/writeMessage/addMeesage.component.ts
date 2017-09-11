@@ -44,6 +44,10 @@ export class AddMeesageComponent implements OnInit, OnDestroy {
     const componenet = this;
     this.message.from = this.senderEmail;
     this.message.text = form.text;
+    if (this.message.from === this.message.to) {
+      componenet.toastr.error('You can`t send messages to yourself');
+      return false;
+    }
     this.messsageService.addMessage(this.message)
       .then(() => {
         componenet.toastr.success('You ve successfully sent message to ' + this.message.to);
